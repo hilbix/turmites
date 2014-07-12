@@ -1,4 +1,5 @@
 **Note: This is work in progress, it does not do something reasonable today**
+
 **Warning!**  This is pre-alpha-code.  It should do no harm, but perhaps it must be disabled on the server because it causes trouble.
 
 Bukkit Turmites
@@ -14,7 +15,9 @@ Usage
 
 - It is an IntelliJ Idea project.  No idea how to compile it from commandline, sorry.
 
-- You can download my 1.5.2 JAR from
+- After build the JAR is in `out/artifacts/turmites_jar/turmites.jar`
+
+- If you dare you can alternatively download my 1.5.2 JAR from
 URL: http://mc.geht.net/turmites/turmites.jar
 (if the server is up) but this might be an intermediate development version.
 
@@ -22,7 +25,7 @@ URL: http://mc.geht.net/turmites/turmites.jar
 
 - For Bukkit configuration, see the [doc/bukkit.md](doc/bukkit.md)
 
-- For intoduction, see the [doc/turmites.md](doc/turmites.md)
+- For introduction, see the [doc/turmites.md](doc/turmites.md)
 
 - If you think something is missing there, give me a note at [https://hydra.geht.net/pager.php](https://hydra.geht.net/pager.php)
 
