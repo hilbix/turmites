@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="turmites:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/turmites_jar</output-path>
+    <properties id="ant-postprocessing">
+      <options enabled="true" />
+    </properties>
+    <root id="root">
+      <element id="archive" name="turmites.jar">
+        <element id="module-output" name="turmites" />
+        <element id="file-copy" path="$PROJECT_DIR$/src/plugin.yml" />
+      </element>
+    </root>
+  </artifact>
+</component>

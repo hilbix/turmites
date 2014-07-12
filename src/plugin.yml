@@ -1,0 +1,47 @@
+name: turmites
+version: 0.0.1.2
+description: Droppers which can move like turmites
+author: https://github.com/hilbix/
+website: https://github.com/hilbix/turmites.git
+main: net.geht.mc.turmites.base
+database: false
+load: postworld
+commands:
+  turmite:
+    description: Control turmites
+    usage: |
+      <command> subcommand [args..]
+      <command> -- see list of available subcommands
+      <command> help [SECTION] -- more detailed help
+      <command> save BOOK -- save held book to file
+      <command> load BOOK -- load book from file
+      <command> book [BOOK] -- list books or show detail
+      <command> list [TASK] -- list all turmites and tasks or show details
+      <command> boot [TURMITE] -- boot (all) turmites
+      <command> stop [TASK] -- stop (all) tasks
+      <command> cont [TASK] -- continue (all) tasks
+      <command> step [COUNT] -- singlestep stopped tasks
+      <command> slow [SPEED] -- run task with cmd/s, default 1
+      <command> debug level [TASK] -- debug tasks, level=0(off) to 65535(full)
+    aliases: [tur,turm,turmites]
+
+permissions:
+  turmite.*:
+    description: Gives permission to all turmite commands
+    children:
+      turmite.list: true
+      turmite.control: true
+      turmite.debug: true
+      turmite.create: true
+  turmite.list:
+    description: Allow Turmite listing
+    default: true
+  turmite.create:
+    description: Allow Turmite creation
+    default: op
+  turmite.debug:
+    description: Allow Turmite debugging
+    default: op
+  turmite.control:
+    description: Allow Turmite control commands
+    default: op
