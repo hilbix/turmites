@@ -1,4 +1,4 @@
-package net.geht.mc.turmites;
+package net.geht.mc.turmites.bukkit;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

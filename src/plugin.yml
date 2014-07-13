@@ -1,9 +1,9 @@
 name: turmites
-version: 0.0.1.2
+version: 0.0.6
 description: Droppers which can move like turmites
 author: https://github.com/hilbix/
 website: https://github.com/hilbix/turmites.git
-main: net.geht.mc.turmites.base
+main: net.geht.mc.turmites.bukkit.main
 database: false
 load: postworld
 commands:
@@ -11,17 +11,16 @@ commands:
     description: Control turmites
     usage: |
       <command> subcommand [args..]
-      <command> -- see list of available subcommands
-      <command> help [SECTION] -- more detailed help
       <command> save BOOK -- save held book to file
       <command> load BOOK -- load book from file
       <command> book [BOOK] -- list books or show detail
-      <command> list [TASK] -- list all turmites and tasks or show details
-      <command> boot [TURMITE] -- boot (all) turmites
-      <command> stop [TASK] -- stop (all) tasks
-      <command> cont [TASK] -- continue (all) tasks
-      <command> step [COUNT] -- singlestep stopped tasks
-      <command> slow [SPEED] -- run task with cmd/s, default 1
+      <command> exec X Y Z -- boot turmite at the given location
+      <command> list [TASK] -- list all tasks or show details
+      <command> slow [N] [M] -- run tasks with N/M steps per tick, default 1
+      <command> stop TASK -- stop (terminate) tasks, 'all' for all
+      <command> halt TASK -- halt task, 'all' for all
+      <command> cont [TASK] -- continue task, default: last halted
+      <command> step [COUNT] -- singlestep halted tasks
       <command> debug level [TASK] -- debug tasks, level=0(off) to 65535(full)
     aliases: [tur,turm,turmites]
 
@@ -29,19 +28,39 @@ permissions:
   turmite.*:
     description: Gives permission to all turmite commands
     children:
+      turmite.save: true
+      turmite.load: true
+      turmite.book: true
+      turmite.exec: true
       turmite.list: true
-      turmite.control: true
+      turmite.slow: true
+      turmite.stop: true
+      turmite.ctrl: true
       turmite.debug: true
-      turmite.create: true
-  turmite.list:
-    description: Allow Turmite listing
+  turmite.save:
+    description: Allow "turmite save" command
+    default: op
+  turmite.load:
+    description: Allow "turmite save" command
+    default: op
+  turmite.book:
+    description: Allow "turmite save" command
     default: true
-  turmite.create:
-    description: Allow Turmite creation
+  turmite.exec:
+    description: Allow "turmite exec" command
+    default: op
+  turmite.list:
+    description: Allow "turmite list" command
+    default: true
+  turmite.slow:
+    description: Allow "turmite slow" command
+    default: op
+  turmite.stop:
+    description: Allow "turmite stop" command
+    default: op
+  turmite.ctrl:
+    description: Allow "turmite halt|cont|step" commands
     default: op
   turmite.debug:
-    description: Allow Turmite debugging
-    default: op
-  turmite.control:
-    description: Allow Turmite control commands
+    description: Allow "turmite debug" command
     default: op
