@@ -28,7 +28,7 @@ So there are some easy console commands to load/save books from files.  These fi
 - `/tur load BOOK #`: loads an older revision of a book
 - `/tur books`: lists all known books
 
-You can bundle books.  Can create a folder which contains several books.  These books then are loaded together, ASCII-ordered by name.  You cannot save books named after a bundle.
+You can bundle books.  Just  create a folder which contains several books.  These books then are loaded together, ASCII-ordered by name.  You cannot save books named after a bundle.
 
 ### Books format
 

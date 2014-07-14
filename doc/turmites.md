@@ -86,7 +86,7 @@ However there they were easy state machines not capable of many things.  This is
 
 - Turmites are stack machines.  There are an unlimited number of stacks.  Each method call has it's own stack.
 
-- Turmites are able to evaluate things in parallel.  This is semi-parallel timesharing of the single execution thread.
+- Turmites are able to evaluate net.geht.mc.turmites.data.things in parallel.  This is semi-parallel timesharing of the single execution thread.
 
 - Turmites process a fixed number of program steps each tick.  Usually 1 step per tick, this is 20 commands per second.
 

@@ -1,30 +1,37 @@
 package net.geht.mc.turmites.bukkit;
 
-import java.util.List;
+import net.geht.mc.turmites.ex.MissingArgumentException;
+import net.geht.mc.turmites.ex.NotConsoleException;
+import net.geht.mc.turmites.ex.NotPlayerException;
+import net.geht.mc.turmites.ex.TooManyArgumentsException;
 import org.bukkit.entity.Player;
 
-public abstract class cmdProto
+import java.util.List;
+
+public abstract class cmds
   {
   private String name;
-  private int min, max;
+  private int    min, max;
   protected boolean allowConsole = true;
   protected boolean allowPlayer  = true;
 
   public String getName() { return name; }
 
-  public cmdProto(String name, int min, int max)
+  public cmds(String name, int min, int max)
     {
       this.name = name;
       this.min = min;
       this.max = max;
     }
-  public cmdProto(String name, int min)
+
+  public cmds(String name, int min)
     {
       this.name = name;
       this.min = min;
       this.max = min;
     }
-  public cmdProto(String name)
+
+  public cmds(String name)
     {
       this.name = name;
       this.min = 0;

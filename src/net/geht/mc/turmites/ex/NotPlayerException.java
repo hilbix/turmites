@@ -1,4 +1,4 @@
-package net.geht.mc.turmites.bukkit;
+package net.geht.mc.turmites.ex;
 
 public class NotPlayerException extends UncheckedException
   {

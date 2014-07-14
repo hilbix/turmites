@@ -1,16 +1,16 @@
-package net.geht.mc.turmites.bukkit.cmds;
+package net.geht.mc.turmites.bukkit.cmd;
 
-import net.geht.mc.turmites.bukkit.cmdProto;
 import net.geht.mc.turmites.bukkit.cmdMain;
+import net.geht.mc.turmites.bukkit.cmds;
 
 import java.util.List;
 
 @SuppressWarnings("ALL")
-public class cont extends cmdProto
+public class list extends cmds
   {
-  public cont()
+  public list()
     {
-      super("cont", 0);
+      super("list", 0);
     }
 
   @Override

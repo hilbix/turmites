@@ -1,13 +1,12 @@
-package net.geht.mc.turmites.bukkit.cmds;
+package net.geht.mc.turmites.bukkit.cmd;
 
-import net.geht.mc.turmites.bukkit.cmdProto;
 import net.geht.mc.turmites.bukkit.cmdMain;
-import org.bukkit.inventory.meta.BookMeta;
+import net.geht.mc.turmites.bukkit.cmds;
 
 import java.util.List;
 
 @SuppressWarnings("ALL")
-public class save extends cmdProto
+public class save extends cmds
   {
   public save()
     {

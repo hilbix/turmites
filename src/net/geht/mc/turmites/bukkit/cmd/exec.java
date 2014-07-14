@@ -1,17 +1,16 @@
-package net.geht.mc.turmites.bukkit.cmds;
+package net.geht.mc.turmites.bukkit.cmd;
 
-import net.geht.mc.turmites.bukkit.cmdProto;
 import net.geht.mc.turmites.bukkit.cmdMain;
+import net.geht.mc.turmites.bukkit.cmds;
 
 import java.util.List;
 
 @SuppressWarnings("ALL")
-public class load extends cmdProto
+public class exec extends cmds
   {
-  public load()
+  public exec()
     {
-      super("load", 0);
-      allowConsole = false;
+      super("exec", 0);
     }
 
   @Override

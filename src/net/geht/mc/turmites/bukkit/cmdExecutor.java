@@ -1,13 +1,14 @@
 package net.geht.mc.turmites.bukkit;
 
+import net.geht.mc.turmites.main;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 public class cmdExecutor implements CommandExecutor
   {
-  private main   main;
-  public  String name;
+  private net.geht.mc.turmites.main main;
+  public  String                    name;
 
   public void DI(String s) { main.DI(s); }
 
@@ -26,5 +27,5 @@ public class cmdExecutor implements CommandExecutor
       return new cmdMain(this, sender, command, label).run(args);
     }
 
-   public main getMain() { return main; }
+  public main getMain() { return main; }
   }

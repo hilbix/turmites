@@ -13,19 +13,19 @@ import org.bukkit.event.player.PlayerQuitEvent;
  */
 public final class listen implements Listener
   {
-    public listen()
-      {
-      }
+  public listen()
+    {
+    }
 
-    @EventHandler(priority= EventPriority.LOWEST)
-    public void onLogin(PlayerJoinEvent event)
-      {
+  @EventHandler(priority = EventPriority.LOWEST)
+  public void onLogin(PlayerJoinEvent event)
+    {
 
-      }
+    }
 
-    @EventHandler(priority= EventPriority.LOWEST, ignoreCancelled=true)
-    public void onLogout(PlayerQuitEvent event)
-      {
+  @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+  public void onLogout(PlayerQuitEvent event)
+    {
 
-      }
+    }
   }
