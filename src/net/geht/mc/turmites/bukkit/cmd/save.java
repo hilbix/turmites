@@ -2,6 +2,7 @@ package net.geht.mc.turmites.bukkit.cmd;
 
 import net.geht.mc.turmites.bukkit.cmdMain;
 import net.geht.mc.turmites.bukkit.cmds;
+import org.bukkit.entity.Player;
 
 import java.util.List;
 
@@ -17,6 +18,8 @@ public class save extends cmds
   @Override
   public String run(cmdMain main, List<String> args)
     {
-      return main.getBookIO().save(args.get(0), main.playerItemInHand());
+      Player p = main.getPlayer();
+
+      return main.getBookIO().save(p, args.get(0), p.getItemInHand());
     }
   }

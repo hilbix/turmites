@@ -17,6 +17,6 @@ public class load extends cmds
   @Override
   public String run(cmdMain main, List<String> args)
     {
-      return main.getBookIO().load(args.get(0), main.player);
+      return main.getBookIO().load(main.getPlayer(), args.get(0));
     }
   }

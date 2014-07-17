@@ -19,8 +19,8 @@ public class cmdMain
   public CommandSender sender;
   public Command       command;
   public String        label;
-  public Player        player;
 
+  private Player        player;
   private boolean                     had;
   private LinkedHashMap<String, cmds> cmdMap;
 
@@ -107,11 +107,11 @@ public class cmdMain
 	out(proto.getName());
     }
 
-  public ItemStack playerItemInHand()
+  public Player getPlayer()
     {
       if (null == player)
 	throw new NotPlayerException();
-      return player.getItemInHand();
+      return player;
     }
 
   public bookIO getBookIO()

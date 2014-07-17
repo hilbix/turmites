@@ -4,6 +4,7 @@ package net.geht.mc.turmites.bukkit;
 
 import net.geht.mc.turmites.ex.DataErrorException;
 import net.geht.mc.turmites.ex.MalformedBookNameException;
+import net.geht.mc.turmites.ex.NotFoundException;
 import net.geht.mc.turmites.ex.ReadErrorException;
 import net.geht.mc.turmites.ex.WriteErrorException;
 import net.geht.mc.turmites.util;
@@ -14,6 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.BookMeta;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -25,7 +27,15 @@ public class bookIO
   {
   private File path;
 
+  // Filenames form Books are stored at:
+  // Dir<player>Player<book>Bundle/*Ext
+  // Dir<player>Player<book>Ext
+  // DirPublic<book>Bundle/*Ext
+  // DirPublic<book>Ext
   private static final String DIR = "books/";
+  private static final String PLAYER = ".nam/";
+  private static final String PUBLIC = "";
+  private static final String BUNDLE = "";
   private static final String EXT = ".yml";
 
   private static final Pattern        check     = Pattern.compile("[a-z0-9][-a-z0-9]*");
@@ -48,21 +58,28 @@ public class bookIO
       return check.matcher(name).matches();
     }
 
-  private File bookFile(String name, String ext)
+  private File bookFile(String player, String name, String ext)
     {
       if (!validBookName(name))
 	throw new MalformedBookNameException();
-      return new File(path, DIR + name + ext);
+      if (null == player)
+	player = "";
+      return new File(path, DIR + player + name + ext);
     }
 
-  private File bookFile(String name)
+  private File bookFile(String player, String name)
     {
-      return bookFile(name, EXT);
+      return bookFile(player, name, EXT);
     }
 
-  private File bookDir(String name)
+  private String playerName(Player p)
     {
-      return bookFile(name, "");
+      return p.getName().toLowerCase() + PLAYER;
+    }
+
+  private File bookDir(String player, String name)
+    {
+      return bookFile(player, name, "");
     }
 
   private ItemStack load1(File f)
@@ -93,32 +110,53 @@ public class bookIO
       return is;
     }
 
-  private ItemStack load1(String name)
+  private ItemStack load1(String player, String name)
     {
-      return load1(bookFile(name));
+      return load1(bookFile(player, name));
     }
 
-  public ItemStack[] load(String name)
+  public ItemStack[] load(String player, String name)
     {
-      File dir;
+      File fd;
 
-      // load normal files
-      if (!(dir = bookDir(name)).isDirectory())
-	return new ItemStack[] { load1(name) };
+      fd = bookDir(player, name);
+      if (!fd.isDirectory())
+	{
+	  fd = bookFile(player, name);
+	  if (!fd.isFile())
+	    return null;
+	  // load normal files
+	  return new ItemStack[] { load1(player, name) };
+	}
 
       // load a book bundle (directory)
-      File[] files = util.sortFilesByName(dir.listFiles(extFilter));
+      File[] files = util.sortFilesByName(fd.listFiles(extFilter));
 
       ItemStack is[] = new ItemStack[files.length];
       for (int i=0; i<files.length; i++)
-        is[i] = load1(files[i]);
+	is[i] = load1(files[i]);
 
       return is;
     }
 
-  public String load(String name, Player p)
+  public String load(Player p, String name)
     {
-      ItemStack[] is = load(name);
+      ItemStack[] is;
+
+      // Try
+      // Dir<player>Player<book>Bundle/*Ext
+      // Dir<player>Player<book>Ext
+      is = load(playerName(p), name);
+      if (null == is)
+	{
+	  // Try
+	  // DirPublic<book>Bundle/*Ext
+	  // DirPublic<book>Ext
+	  is = load("", name);
+	  if (null == is)
+	    throw new NotFoundException();
+	}
+
       util.assertSlots(p, is.length);
 
       PlayerInventory pi = p.getInventory();
@@ -127,7 +165,7 @@ public class bookIO
       return null;
     }
 
-  public String save(String name, BookMeta book)
+  public String save(Player p, String name, BookMeta book)
     {
       YamlConfiguration y = new YamlConfiguration();
       y.set("t", book.getTitle());
@@ -135,7 +173,7 @@ public class bookIO
       y.set("p", book.getPages());
       try
 	{
-	  y.save(bookFile(name));
+	  y.save(bookFile(playerName(p), name));
 	} catch(IOException e)
 	{
 	  throw new WriteErrorException().e(e);
@@ -143,19 +181,19 @@ public class bookIO
       return null;
     }
 
-  public String save(String name, ItemStack i)
+  public String save(Player p, String name, ItemStack i)
     {
       if (null == i)
 	return "you must hold something";
 
       Material m = i.getType();
       if (!m.equals(Material.WRITTEN_BOOK) && !m.equals(Material.BOOK_AND_QUILL))
-	return "this is not a book: " + i.getType().toString();
-      return save(name, (BookMeta) i.getItemMeta());
+	return "not holding a book: " + i.getType().toString();
+      return save(p, name, (BookMeta) i.getItemMeta());
     }
 
-  public String save(String name, Player p)
+  public String save(Player p, String name)
     {
-      return save(name, p.getItemInHand());
+      return save(p, name, p.getItemInHand());
     }
   }
