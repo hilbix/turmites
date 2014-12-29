@@ -1,3 +1,5 @@
+**This is planned.  This documentation DOES NOT WORK yet.**
+
 # Turmites for Bukkit
 
 ## Getting started

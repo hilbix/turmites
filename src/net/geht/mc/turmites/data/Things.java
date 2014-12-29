@@ -2,8 +2,6 @@ package net.geht.mc.turmites.data;
 
 // A list of anything
 
-import javafx.scene.text.FontSmoothingType;
-
 import java.util.WeakHashMap;
 
 public class Things extends WeakHashMap<Thing, Integer>

@@ -1,5 +1,5 @@
 name: turmites
-version: 0.0.7
+version: 0.0.7a
 description: Droppers which can move like turmites
 author: https://github.com/hilbix/
 website: https://github.com/hilbix/turmites.git
@@ -22,7 +22,8 @@ commands:
       <command> cont [TASK] -- continue task, default: last halted
       <command> step [COUNT] -- singlestep halted tasks
       <command> debug level [TASK] -- debug tasks, level=0(off) to 65535(full)
-    aliases: [tur,turm,turmites]
+      <command> set key [value] -- get key value or set it
+    aliases: [t,tu,tur,turm,turmites]
 
 permissions:
   turmite.*:
@@ -37,6 +38,7 @@ permissions:
       turmite.stop: true
       turmite.ctrl: true
       turmite.debug: true
+      turmite.set: true
   turmite.save:
     description: Allow "turmite save" command
     default: op
@@ -64,3 +66,7 @@ permissions:
   turmite.debug:
     description: Allow "turmite debug" command
     default: op
+  turmite.set:
+    description: Allow "turmite set" command
+    default: op
+

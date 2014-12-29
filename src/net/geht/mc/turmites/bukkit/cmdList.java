@@ -9,6 +9,7 @@ import net.geht.mc.turmites.bukkit.cmd.help;
 import net.geht.mc.turmites.bukkit.cmd.list;
 import net.geht.mc.turmites.bukkit.cmd.load;
 import net.geht.mc.turmites.bukkit.cmd.save;
+import net.geht.mc.turmites.bukkit.cmd.set;
 import net.geht.mc.turmites.bukkit.cmd.slow;
 import net.geht.mc.turmites.bukkit.cmd.step;
 import net.geht.mc.turmites.bukkit.cmd.stop;
@@ -29,5 +30,6 @@ public final class cmdList
       cont.class,
       step.class,
       debug.class,
+      set.class,
     };
   }

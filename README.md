@@ -1,36 +1,38 @@
 **Note: This is work in progress, it does not do something reasonable today**
 
-**Warning!**  This is pre-alpha-code.  It should do no harm, but perhaps it must be disabled on the server because it causes trouble.
+**Warning!**  This is alpha-code.  It should do no harm, but perhaps it must be disabled on the server because it causes trouble.
 
-Bukkit Turmites
-===============
 
-License: CLL see http://permalink.de/tino/cll
+Turmites for Bukkit
+===================
+
+This is CLLed, see COPYRIGHT.CLL or http://permalink.de/tino/cll
+
+Copyright is slavery in disguise.  So you are not allowed to encumber this with a Copyright, ever.
+So this is and says free as in free speech, free beer and free man.
+
+
+Build
+-----
+
+```bash
+cd ~/bukkit/plugins # where your bukkit plugins are located
+git clone https://github.com/hilbix/turmites.git
+cd turmites
+git submodule update --init
+make
+make install
+```
+
+`reload` Bukkit (enter `reload` on the server console) or restart it.
 
 
 Usage
 -----
 
-- This is tested on Bukkit/Spoutcraft 1.5.2 only.
+- enter `/turmites help` in chat
 
-- It is an IntelliJ Idea project.  No idea how to compile it from commandline, sorry.
-  After build the JAR is in `out/artifacts/turmites_jar/turmites.jar`.
-  If not, create the missing Artifact `turmites.jar`, see http://stackoverflow.com/a/9463915
-
-- This needs https://github.com/hilbix/Bukkit.git as a dependency at
-  `../Bukkit/target/bukkit-1.5.2-R1.0-hilbix.jar`
-
-  To build this do from this directory here:
-  `cd ..; git clone https://github.com/hilbix/Bukkit.git; cd Bukkit; mvn clean install`
-  (With IntelliJ: Create a new project, View::Tool Windows::Maven Projects
-   and then in Bukkit::Livecycle with both `clean` and `install` selected do a rightclick
-   and choose `Run Maven Build`.  I did not find out yet how to automate this.)
-
-- If you dare you can alternatively download my 1.5.2 JAR from
-URL: http://mc.geht.net/turmites/turmites.jar
-(if the server is up) but this might be an intermediate development version.
-
-- Drop the `turmites.jar` into your `plugins/` directory.
+- permissions: T.B.D. (I never came around to understand the Bukkit permission system yet, sorry.)
 
 - For Bukkit configuration, see the [doc/bukkit.md](doc/bukkit.md)
 
@@ -46,14 +48,17 @@ URL: http://mc.geht.net/turmites/turmites.jar
 Notes
 -----
 
+- This was tested on CraftBukkit-1.8 only, sorry.
+
 - Turmites probably interfere with other plugins which modify Droppers.
 
-- On my server Turmites will replace COMMAND-blocks and other plugins like WorldEdit.
+- On my server Turmites will replace every other plugin, except dynmap ;)
 
-- Feel free to clone it on GitHub, change it and send me PullRequests if you agree to drop your Copyright on all changes you made!
+- Feel free to clone it on GitHub and change it.
 
-- My server mc.geht.net is 1.5.2 and I do not have the time to keep track of all newer changes.  (I do not need horses.)
+- If you wan to send me PullRequests, you previously must agree to drop your Copyright on all changes you made!
 
-- My server mc.geht.net is non-public.  Perhaps it never will go public.
+- My server http://mc18.geht.net/ is nonpublic and perhaps never will go public.
 
-- All changes to my server will be published on GitHub under https://github.com/hilbix/ when I find the time.
+- It is MC 1.8 and it will stay there for a while, as I only update my MC world when it is worth the effort.  Before it was 1.5.2 and "horses only" was not enough to have me update.
+

@@ -21,6 +21,7 @@ Probably it is wise to use a chest.  Double chests are not really supported.
 
 The catch of a chest is, that you can put in more than one book, such that you can extend the basic book by them.
 
+
 ### Initial variables
 
 When a turmite starts, the registers are set as follows:
@@ -59,7 +60,7 @@ For the language see [lang.md](lang,md) and for the standard library see [lib.md
 
 Turmites are small turing machines living on an unlimited 2D pane.  They were introduced by Scientific American.
 
-However there they were easy state machines not capable of many things.  This is a nice mathematical idea, but not much fun to use in a game.  To be more fun, turmites can do much more.
+However there they were easy state machines which are difficult to program.  Turing machines are a nice mathematical idea, but not much fun to use in a game.  To be more fun, Turmites for Bukkit can do much more.
 
 
 ### What are turmites
@@ -97,3 +98,4 @@ However there they were easy state machines not capable of many things.  This is
 There are Turtles for Bukkit (TODO: Add link here).  These are (probably) very powerful thingies with a nice idea of a language.  They might be fun as well, but difficult to handle, I think.  It's like "If you have APL, why need another language?"  Also I never got them running on Bukkit, because they have trainloads of dependencies.
 
 Turmites can act like Turtles, however they are programmed differently.  Except of this they are not related to Turtles in any way.  The idea behind Turmites is completely different.
+

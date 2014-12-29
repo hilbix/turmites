@@ -64,13 +64,15 @@ public class cmdMain
       return true;
     }
 
-  private boolean err(String s) { return put(ChatColor.RED + s); }
+  public boolean err(String s) { return put(ChatColor.RED + s); }
 
-  private boolean warn(String s) { return put(ChatColor.DARK_RED + s); }
+  public boolean warn(String s) { return put(ChatColor.DARK_RED + s); }
 
-  private boolean note(String s) { return put(ChatColor.GREEN + s); }
+  public boolean note(String s) { return put(ChatColor.GREEN + s); }
 
-  private boolean out(String s) { return put(ChatColor.WHITE + s); }
+  public boolean out(String s) { return put(ChatColor.WHITE + s); }
+
+  public void OOPS(String s) { throw new FailedCommandException().e(s); }
 
   public boolean run(String[] args)
     {
@@ -91,7 +93,7 @@ public class cmdMain
 
 	  String s = c.run(this, l);
 	  if (null != s)
-	    throw new FailedCommandException().e(s);
+	    OOPS(s);
 	} catch(UncheckedException e)
 	{
 	  return err("'" + cmd.name + ' ' + c.getName() + "' error: " + e.getHint());
