@@ -7,6 +7,8 @@ ME=turmites
 DEST=$(ME).jar
 SRCDIR=src
 
+SUBMODULES=src/org/intellij src/org/jetbrains
+
 PLUGIN=plugin.yml
 MF=META-INF/MANIFEST.MF
 
@@ -38,7 +40,10 @@ $(DEST):	compile
 	jar cfm '$(DEST)' '$(SRCDIR)/$(MF)' -C '$(SRCDIR)' '$(PLUGIN)' -C '$(OUT)/$(ME)' .
 	jar i '$(DEST)'
 
-compile:	$(CB)
+$(SUBMODULES):
+	git submodule update --init
+
+compile:	$(CB) $(SUBMODULES)
 	$(JAVACME) $(SRC) || make lint
 
 lint:
