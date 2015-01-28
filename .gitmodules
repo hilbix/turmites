@@ -1,0 +1,6 @@
+[submodule "src/org/intellij"]
+	path = src/org/intellij
+	url = https://github.com/hilbix/org.intellij.git
+[submodule "src/org/jetbrains"]
+	path = src/org/jetbrains
+	url = https://github.com/hilbix/org.jetbrains.git

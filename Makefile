@@ -1,7 +1,7 @@
 # I like `make`.  No `maven`, no complex documentation, nothing, just `make`.
 # Why re-invent the wheel in a different shape when it's already perfect?
 
-INSTDIR=..
+INSTDIR=../../jar
 
 ME=turmites
 DEST=$(ME).jar
@@ -48,7 +48,8 @@ clean:
 	rm -rf '$(OUT)'
 
 distclean: clean
-	rm -f '$(CB)'
+	rm -f '$(CB)' '$(DEST)'
+	ln -vfs '../../jar/craftbukkit-1.8.jar' '$(CB)'
 
 $(CB):
 	@echo
@@ -61,7 +62,8 @@ $(CB):
 	@false
 
 spigot:	$(OUT)/$(SPIGOT)/$(CB)
-	ln -vfs '$(OUT)/$(SPIGOT)/$(CB)' .
+	rm -f '$(CB)'
+	ln -vfs '$(OUT)/$(SPIGOT)'/craftbukkit-*.jar '$(CB)'
 
 $(OUT)/$(SPIGOT)/$(CB):	update
 
@@ -71,7 +73,7 @@ update:
 	@echo '! If updating spigot suddenly no more works, try "make clean"'
 	@echo
 	-mkdir '$(OUT)/$(SPIGOT)'
-	cd '$(OUT)/$(SPIGOT)' && wget -N 'https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar' && java -jar BuildTools.jar && ln -vfs craftbukkit-*.jar '$(CB)' || { echo; echo 'OOPS .. that failed.  Perhaps try "make clean update"'; echo; }
+	cd '$(OUT)/$(SPIGOT)' && wget -N 'https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar' && java -jar BuildTools.jar || { echo; echo 'OOPS .. that failed.  Perhaps try "make clean update"'; echo; }
 
 #
 # OS-dependencies to "make" this.
