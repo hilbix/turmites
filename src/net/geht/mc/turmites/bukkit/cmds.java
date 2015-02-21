@@ -15,7 +15,8 @@ public abstract class cmds
   protected boolean allowConsole = true;
   protected boolean allowPlayer  = true;
 
-  public String getName() { return name; }
+  public String getName()		{ return name; }
+  public String getName(cmdMain main)	{ return main.cmd.name + ' ' + name; }
 
   public cmds(String name, int min, int max)
     {

@@ -23,6 +23,7 @@ commands:
       <command> step [COUNT] -- singlestep halted tasks
       <command> debug level [TASK] -- debug tasks, level=0(off) to 65535(full)
       <command> set key [value] -- get key value or set it
+      <command> tool -- give the turmite tool (golden hoe)
     aliases: [t,tu,tur,turm,turmites]
 
 permissions:

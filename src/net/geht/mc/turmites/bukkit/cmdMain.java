@@ -86,9 +86,9 @@ public class cmdMain
 
       try
 	{
-	  List<String> l = Arrays.asList(args).subList(1, args.length);
-
 	  c.checkPlayer(player);
+
+	  List<String> l = Arrays.asList(args).subList(1, args.length);
 	  c.checkArgs(l.size());
 
 	  String s = c.run(this, l);
