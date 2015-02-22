@@ -30,6 +30,11 @@ JAVACME=mkdir -p '$(OUT)/$(ME)' && $(JAVAC) -d '$(OUT)/$(ME)'
 
 all:	$(DEST)
 
+it:	all
+	make -C ../..
+	bukkit reload
+	bukkit
+
 # cmd "install" is not guaranteed to be atomic, hence DIY, sigh
 install:	all
 	cp -f '$(DEST)' '$(INSTDIR)/$(DEST).tmp'
@@ -44,6 +49,7 @@ $(SUBMODULES):
 	git submodule update --init
 
 compile:	$(CB) $(SUBMODULES)
+	[ ! -d '$(OUT)/$(ME)' ] || rm -rf '$(OUT)/$(ME)'
 	$(JAVACME) $(SRC) || make lint
 
 lint:

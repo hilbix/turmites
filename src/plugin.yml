@@ -1,9 +1,9 @@
 name: turmites
-version: 0.0.7a
+version: 0.0.7c
 description: Droppers which can move like turmites
 author: https://github.com/hilbix/
 website: https://github.com/hilbix/turmites.git
-main: net.geht.mc.turmites.main
+main: net.geht.mc.turmites.Main
 database: false
 load: postworld
 commands:
