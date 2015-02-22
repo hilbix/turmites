@@ -9,7 +9,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class util
+public class Util
   {
   static public final int freeSlots(Inventory inv)
     {

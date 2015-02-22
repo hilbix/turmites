@@ -2,8 +2,11 @@
   <library name="annotations">
     <CLASSES>
       <root url="jar://$APPLICATION_HOME_DIR$/redist/annotations.jar!/" />
+      <root url="jar://$PROJECT_DIR$/craftbukkit.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/craftbukkit.jar!/" />
+    </SOURCES>
   </library>
 </component>

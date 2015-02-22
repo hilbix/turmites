@@ -7,7 +7,7 @@ import net.geht.mc.turmites.ex.MalformedBookNameException;
 import net.geht.mc.turmites.ex.NotFoundException;
 import net.geht.mc.turmites.ex.ReadErrorException;
 import net.geht.mc.turmites.ex.WriteErrorException;
-import net.geht.mc.turmites.util;
+import net.geht.mc.turmites.Util;
 import org.bukkit.Material;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -15,15 +15,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.BookMeta;
-import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.regex.Pattern;
 
-public class bookIO
+public class BookIO
   {
   private File path;
 
@@ -48,7 +46,7 @@ public class bookIO
       }
   };
 
-  public bookIO(File p)
+  public BookIO(File p)
     {
       path = p;
     }
@@ -130,7 +128,7 @@ public class bookIO
 	}
 
       // load a book bundle (directory)
-      File[] files = util.sortFilesByName(fd.listFiles(extFilter));
+      File[] files = Util.sortFilesByName(fd.listFiles(extFilter));
 
       ItemStack is[] = new ItemStack[files.length];
       for (int i=0; i<files.length; i++)
@@ -157,7 +155,7 @@ public class bookIO
 	    throw new NotFoundException();
 	}
 
-      util.assertSlots(p, is.length);
+      Util.assertSlots(p, is.length);
 
       PlayerInventory pi = p.getInventory();
       for (ItemStack item : is)

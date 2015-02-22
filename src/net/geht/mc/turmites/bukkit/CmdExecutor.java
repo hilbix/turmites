@@ -1,18 +1,18 @@
 package net.geht.mc.turmites.bukkit;
 
-import net.geht.mc.turmites.main;
+import net.geht.mc.turmites.Main;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class cmdExecutor implements CommandExecutor
+public class CmdExecutor implements CommandExecutor
   {
-  private net.geht.mc.turmites.main main;
-  public  String                    name;
+  private Main   main;
+  public  String name;
 
   public void DI(String s) { main.DI(s); }
 
-  public cmdExecutor(main main, String name)
+  public CmdExecutor(Main main, String name)
     {
       this.main = main;
       this.name = name;
@@ -24,8 +24,8 @@ public class cmdExecutor implements CommandExecutor
 //      if (!this.name.equalsIgnoreCase(command.getName()))
 //	return main.onCommand(sender, command, label, args);
 
-      return new cmdMain(this, sender, command, label).run(args);
+      return new CmdMain(this, sender, command, label).run(args);
     }
 
-  public main getMain() { return main; }
+  public Main getMain() { return main; }
   }

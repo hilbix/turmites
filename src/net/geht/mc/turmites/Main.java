@@ -1,20 +1,22 @@
 package net.geht.mc.turmites;
 
-import net.geht.mc.turmites.bukkit.bookIO;
-import net.geht.mc.turmites.bukkit.cmdExecutor;
+import net.geht.mc.turmites.bukkit.BookIO;
+import net.geht.mc.turmites.bukkit.CmdExecutor;
+import net.geht.mc.turmites.bukkit.Listeners;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import org.jetbrains.annotations.Nullable;
 
-public final class main extends JavaPlugin
+public final class Main extends JavaPlugin implements Listener
   {
   @Nullable
-  private        PluginDescriptionFile              desc;
-  private        net.geht.mc.turmites.bukkit.bookIO bookIO;
-  private static main                               me;
+  private        PluginDescriptionFile desc;
+  private        BookIO                BookIO;
+  private static Main                  me;
 
-  public static main getMain()
+  public static Main getMain()
     {
       return me;
     }
@@ -29,8 +31,7 @@ public final class main extends JavaPlugin
       }
     */
 
-
-  public main()
+  public Main()
     {
       desc = null;
     }
@@ -55,12 +56,13 @@ public final class main extends JavaPlugin
       desc = this.getDescription();
       DI("enabled");
       super.onEnable();
-      getCommand("turmite").setExecutor(new cmdExecutor(this, "turmite"));
-      bookIO = new bookIO(getDataFolder());
+      getCommand("turmite").setExecutor(new CmdExecutor(this, "turmite"));
+      BookIO = new BookIO(getDataFolder());
+      getServer().getPluginManager().registerEvents(new Listeners(this), this);
     }
 
-  public bookIO getBookIO()
+  public BookIO getBookIO()
     {
-      return bookIO;
+      return BookIO;
     }
   }

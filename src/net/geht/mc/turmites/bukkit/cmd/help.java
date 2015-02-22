@@ -1,12 +1,12 @@
 package net.geht.mc.turmites.bukkit.cmd;
 
-import net.geht.mc.turmites.bukkit.cmdMain;
-import net.geht.mc.turmites.bukkit.cmds;
+import net.geht.mc.turmites.bukkit.CmdMain;
+import net.geht.mc.turmites.bukkit.Cmds;
 
 import java.util.List;
 
 @SuppressWarnings("ALL")
-public class help extends cmds
+public class help extends Cmds
   {
   public help()
     {
@@ -14,7 +14,7 @@ public class help extends cmds
     }
 
   @Override
-  public String run(cmdMain main, List<String> args)
+  public String run(CmdMain main, List<String> args)
     {
       main.list();
       return null;

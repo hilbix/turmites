@@ -1,14 +1,12 @@
 package net.geht.mc.turmites.bukkit.cmd;
 
-import net.geht.mc.turmites.bukkit.cmdMain;
-import net.geht.mc.turmites.bukkit.cmds;
-
-import org.bukkit.entity.Player;
+import net.geht.mc.turmites.bukkit.CmdMain;
+import net.geht.mc.turmites.bukkit.Cmds;
 
 import java.util.List;
 
 @SuppressWarnings("ALL")
-public class set extends cmds
+public class set extends Cmds
   {
   public set()
     {
@@ -34,7 +32,7 @@ public class set extends cmds
     };
 
   @Override
-  public String run(cmdMain main, List<String> args)
+  public String run(CmdMain main, List<String> args)
     {
       if (args.size()==0)
         {
@@ -58,7 +56,7 @@ public class set extends cmds
         return setters(main, cmd, args.get(1));
     }
 
-  private String getters(cmdMain main, Sets cmd)
+  private String getters(CmdMain main, Sets cmd)
     {
       String s;
 
@@ -75,7 +73,7 @@ public class set extends cmds
       return null;
     }
 
-  private String setters(cmdMain main, Sets cmd, String val)
+  private String setters(CmdMain main, Sets cmd, String val)
     {
       String s;
 
@@ -91,7 +89,7 @@ public class set extends cmds
       return getters(main, cmd);
     }
 
-  private int intRange(cmdMain main, String s, int min, int max)
+  private int intRange(CmdMain main, String s, int min, int max)
     {
       int i = Integer.parseInt(s);
 
@@ -101,7 +99,7 @@ public class set extends cmds
 	main.OOPS("value exeeds "+max+": "+s);
       return i;
     }
-  private float floatPercent(cmdMain main, String s)
+  private float floatPercent(CmdMain main, String s)
     {
       return intRange(main, s, 1,100)/100.f;
     }
@@ -109,22 +107,15 @@ public class set extends cmds
     {
       return allow ? "allowed" : "denied";
     }
-  private Boolean from_bool(cmdMain main, String s)
+  private Boolean from_bool(CmdMain main, String s)
     {
-      switch (s)
-	{
-	case "0":
-	case "false":
-	case "off":
-	case "no":
-	  return false;
+      // String Switch is Java7
+      if (s=="0" || s=="false" || s=="off" || s=="no")
+	return false;
 
-	case "1":
-	case "true":
-	case "on":
-	case "yes":
-	  return true;
-	}
+      if (s=="1" || s=="true" || s=="on" || s=="yes")
+	return true;
+
       main.OOPS("need a boolean value (false/0/no/off, true/1/yes/on)");
       return false;
     }

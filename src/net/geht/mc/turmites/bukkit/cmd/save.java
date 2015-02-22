@@ -1,13 +1,13 @@
 package net.geht.mc.turmites.bukkit.cmd;
 
-import net.geht.mc.turmites.bukkit.cmdMain;
-import net.geht.mc.turmites.bukkit.cmds;
+import net.geht.mc.turmites.bukkit.CmdMain;
+import net.geht.mc.turmites.bukkit.Cmds;
 import org.bukkit.entity.Player;
 
 import java.util.List;
 
 @SuppressWarnings("ALL")
-public class save extends cmds
+public class save extends Cmds
   {
   public save()
     {
@@ -16,7 +16,7 @@ public class save extends cmds
     }
 
   @Override
-  public String run(cmdMain main, List<String> args)
+  public String run(CmdMain main, List<String> args)
     {
       Player p = main.getPlayer();
 

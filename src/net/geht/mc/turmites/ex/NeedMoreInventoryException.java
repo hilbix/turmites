@@ -8,6 +8,6 @@ public class NeedMoreInventoryException extends UncheckedException
     }
   public NeedMoreInventoryException(int n)
     {
-      hint = "need "+n+" more inventoryslots";
+      hint = "need "+n+" more inventory slots";
     }
   };

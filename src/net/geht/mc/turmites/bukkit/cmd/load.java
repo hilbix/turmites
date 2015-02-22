@@ -1,12 +1,12 @@
 package net.geht.mc.turmites.bukkit.cmd;
 
-import net.geht.mc.turmites.bukkit.cmdMain;
-import net.geht.mc.turmites.bukkit.cmds;
+import net.geht.mc.turmites.bukkit.CmdMain;
+import net.geht.mc.turmites.bukkit.Cmds;
 
 import java.util.List;
 
 @SuppressWarnings("ALL")
-public class load extends cmds
+public class load extends Cmds
   {
   public load()
     {
@@ -15,7 +15,7 @@ public class load extends cmds
     }
 
   @Override
-  public String run(cmdMain main, List<String> args)
+  public String run(CmdMain main, List<String> args)
     {
       return main.getBookIO().load(main.getPlayer(), args.get(0));
     }

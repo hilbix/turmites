@@ -3,15 +3,13 @@
 
 package net.geht.mc.turmites.bukkit.cmd;
 
-import net.geht.mc.turmites.bukkit.cmdMain;
-import net.geht.mc.turmites.bukkit.cmds;
+import net.geht.mc.turmites.bukkit.CmdMain;
+import net.geht.mc.turmites.bukkit.Cmds;
 
 import java.util.List;
 
-import org.bukkit.entity.Player;
-
 @SuppressWarnings("ALL")
-public class tool extends cmds
+public class tool extends Cmds
   {
   public tool()
     {
@@ -20,7 +18,7 @@ public class tool extends cmds
     }
 
   @Override
-  public String run(cmdMain main, List<String> args)
+  public String run(CmdMain main, List<String> args)
     {
       // main.getPlayer()
       return null;

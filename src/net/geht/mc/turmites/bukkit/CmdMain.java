@@ -7,54 +7,49 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-public class cmdMain
+public class CmdMain
   {
-  public cmdExecutor   cmd;
   public CommandSender sender;
   public Command       command;
   public String        label;
 
-  private Player        player;
-  private boolean                     had;
-  private LinkedHashMap<String, cmds> cmdMap;
+  private CmdExecutor				cmd;
+  private Player                		player;
+  private boolean				had;
+  private static LinkedHashMap<String, Cmds>	cmdMap = null;
 
   public void DI(String s) { cmd.DI(s); }
 
-  public cmdMain(cmdExecutor cmd, CommandSender sender, Command command, String label)
+  private static void initCmdMap()
+    {
+      cmdMap = new LinkedHashMap<String, Cmds>();
+
+      for (int i = 0; i < CmdList.commands.length; i++)
+	{
+	  Cmds add = CmdList.getCmds(i);
+	  String name = add.getName().toLowerCase();
+//	  if (cmdMap.containsKey(name))
+//	    DI("duplicate " + name);
+	  cmdMap.put(name, add);
+	}
+    }
+
+  public CmdMain(CmdExecutor cmd, CommandSender sender, Command command, String label)
     {
       this.cmd = cmd;
       this.sender = sender;
       this.command = command;
       this.label = label;
-      had = false;
+
       player = sender instanceof Player ? (Player) sender : null;
-      cmdMap = new LinkedHashMap<String, cmds>();
 
-      for (int i = 0; i < cmdList.commands.length; i++)
-	{
-	  try
-	    {
-	      //noinspection LocalVariableOfConcreteClass
-	      cmds add = ((Class<? extends cmds>) cmdList.commands[i]).newInstance();
-
-	      String name = add.getName().toLowerCase();
-	      if (cmdMap.containsKey(name))
-		DI("duplicate " + name);
-	      cmdMap.put(name, add);
-	      continue;
-	    } catch(InstantiationException e)
-	    {
-	    } catch(IllegalAccessException e)
-	    {
-	    }
-	  DI("problematic " + cmdList.commands[i].toString());
-	}
+      if (cmdMap == null)
+	initCmdMap();
     }
 
   private boolean put(String s)
@@ -64,23 +59,24 @@ public class cmdMain
       return true;
     }
 
-  public boolean err(String s) { return put(ChatColor.RED + s); }
-
+  public boolean err(String s)  { return put(ChatColor.RED + s); }
   public boolean warn(String s) { return put(ChatColor.DARK_RED + s); }
-
   public boolean note(String s) { return put(ChatColor.GREEN + s); }
+  public boolean out(String s)  { return put(ChatColor.WHITE + s); }
+  public void    OOPS(String s) { throw new FailedCommandException().e(s); }
 
-  public boolean out(String s) { return put(ChatColor.WHITE + s); }
-
-  public void OOPS(String s) { throw new FailedCommandException().e(s); }
+  public BookIO getBookIO()  { return cmd.getMain().getBookIO(); }
+  public String getCmdName() { return cmd.name; }
 
   public boolean run(String[] args)
     {
+      had = false;
+
       if (args.length < 1)
 	return err("try 'help " + cmd.name + "' to see a list of possible commands");
 
       //noinspection LocalVariableOfConcreteClass
-      cmds c = cmdMap.get(args[0].toLowerCase());
+      Cmds c = cmdMap.get(args[0].toLowerCase());
       if (null == c)
 	return err("unknown command, try 'help " + cmd.name + '\'');
 
@@ -105,8 +101,8 @@ public class cmdMain
 
   public void list()
     {
-      for (cmds proto : cmdMap.values())
-	out(proto.getName());
+      for (Cmds c : cmdMap.values())
+	out(c.getName());
     }
 
   public Player getPlayer()
@@ -116,8 +112,4 @@ public class cmdMain
       return player;
     }
 
-  public bookIO getBookIO()
-    {
-      return cmd.getMain().getBookIO();
-    }
   }

@@ -8,31 +8,31 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
-public abstract class cmds
+public abstract class Cmds
   {
-  private String name;
-  private int    min, max;
-  protected boolean allowConsole = true;
-  protected boolean allowPlayer  = true;
+  private String	name;
+  private int		min, max;
+  protected boolean	allowConsole = true;
+  protected boolean	allowPlayer  = true;
 
   public String getName()		{ return name; }
-  public String getName(cmdMain main)	{ return main.cmd.name + ' ' + name; }
+  public String getName(CmdMain main)	{ return main.getCmdName() + ' ' + name; }
 
-  public cmds(String name, int min, int max)
+  public Cmds(String name, int min, int max)
     {
       this.name = name;
       this.min = min;
       this.max = max;
     }
 
-  public cmds(String name, int min)
+  public Cmds(String name, int min)
     {
       this.name = name;
       this.min = min;
       this.max = min;
     }
 
-  public cmds(String name)
+  public Cmds(String name)
     {
       this.name = name;
       this.min = 0;
@@ -62,5 +62,5 @@ public abstract class cmds
     }
 
 
-  public abstract String run(cmdMain main, List<String> args);
+  public abstract String run(CmdMain main, List<String> args);
   }

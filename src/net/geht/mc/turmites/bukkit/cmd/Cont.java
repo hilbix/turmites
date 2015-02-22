@@ -1,20 +1,20 @@
 package net.geht.mc.turmites.bukkit.cmd;
 
-import net.geht.mc.turmites.bukkit.cmdMain;
-import net.geht.mc.turmites.bukkit.cmds;
+import net.geht.mc.turmites.bukkit.CmdMain;
+import net.geht.mc.turmites.bukkit.Cmds;
 
 import java.util.List;
 
 @SuppressWarnings("ALL")
-public class cont extends cmds
+public class Cont extends Cmds
   {
-  public cont()
+  public Cont()
     {
       super("cont", 0);
     }
 
   @Override
-  public String run(cmdMain main, List<String> args)
+  public String run(CmdMain main, List<String> args)
     {
       return "not yet implemented";
     }
