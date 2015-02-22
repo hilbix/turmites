@@ -38,14 +38,18 @@ public final class Main extends JavaPlugin implements Listener
 
   public void DI(String s)
     {
-      if (desc != null)
-	getLogger().info(desc.getName() + " V" + desc.getVersion() + ": " + s);
+      getLogger().info(s);
+    }
+
+  private void DIV(String s)
+    {
+      DI(desc.getName() + " V" + desc.getVersion() + ": " + s);
     }
 
   @Override
   public void onDisable()
     {
-      DI("disabled");
+      DIV("disabled");
       desc = null;
       super.onDisable();
     }
@@ -54,8 +58,8 @@ public final class Main extends JavaPlugin implements Listener
   public void onEnable()
     {
       desc = this.getDescription();
-      DI("enabled");
       super.onEnable();
+      DIV("enabled");
       getCommand("turmite").setExecutor(new CmdExecutor(this, "turmite"));
       BookIO = new BookIO(getDataFolder());
       getServer().getPluginManager().registerEvents(new Listeners(this), this);
