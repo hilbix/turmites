@@ -16,6 +16,7 @@ public final class Listeners implements Listener
   public Listeners(Main main)
     {
       this.main = main;
+      main.DI("listeners activated");
     }
 
   public void DI(Event e, String... s)
