@@ -1,16 +1,24 @@
 package net.geht.mc.turmites.bukkit;
 
+import gnu.trove.impl.sync.TSynchronizedDoubleList;
 import net.geht.mc.turmites.ex.FailedCommandException;
+import net.geht.mc.turmites.ex.NotFoundException;
 import net.geht.mc.turmites.ex.NotPlayerException;
 import net.geht.mc.turmites.ex.UncheckedException;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
+
+import static org.bukkit.Bukkit.getOnlinePlayers;
 
 public class CmdMain
   {
@@ -85,7 +93,7 @@ public class CmdMain
 	  c.checkPlayer(player);
 
 	  List<String> l = Arrays.asList(args).subList(1, args.length);
-	  c.checkArgs(l.size());
+	  c.checkArgs(l);
 
 	  String s = c.run(this, l);
 	  if (null != s)
@@ -105,6 +113,11 @@ public class CmdMain
 	out(c.getName());
     }
 
+  public boolean isPlayer()
+    {
+      return null != player;
+    }
+
   public Player getPlayer()
     {
       if (null == player)
@@ -112,4 +125,21 @@ public class CmdMain
       return player;
     }
 
+  public static Player getPlayer(String s)
+    {
+      return Bukkit.getPlayer(getPlayerUUID(s));
+    }
+
+  public static UUID getPlayerUUID(String s)
+    {
+      for (Player p : getOnlinePlayers())
+	if (p.getName().equals(s))
+	  return p.getUniqueId();
+      throw new NotFoundException().e("Player not found").e(s);
+    }
+
+  public static List<Player> getAllPlayers()
+    {
+      return new LinkedList<Player>(getOnlinePlayers());
+    }
   }

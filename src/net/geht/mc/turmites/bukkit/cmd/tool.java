@@ -20,6 +20,7 @@ public class tool extends Cmds
   @Override
   public String run(CmdMain main, List<String> args)
     {
+      //main.getPlayer().getInventory().
       // main.getPlayer()
       return null;
     }

@@ -23,6 +23,7 @@ commands:
       <command> step [COUNT] -- singlestep halted tasks
       <command> debug level [TASK] -- debug tasks, level=0(off) to 65535(full)
       <command> set key [value] -- get key value or set it
+      <command> set key args -- get key values which take parameters
       <command> tool -- give the turmite tool (golden hoe)
     aliases: [t,tu,tur,turm,turmites]
 
@@ -39,7 +40,9 @@ permissions:
       turmite.stop: true
       turmite.ctrl: true
       turmite.debug: true
+      turmite.get: true
       turmite.set: true
+      turmite.tool: true
   turmite.save:
     description: Allow "turmite save" command
     default: op
@@ -67,7 +70,12 @@ permissions:
   turmite.debug:
     description: Allow "turmite debug" command
     default: op
+  turmite.get:
+    description: Allow "turmite get" command
+    default: op
   turmite.set:
     description: Allow "turmite set" command
     default: op
-
+  turmite.tool:
+    description: Allow "turmite tool" command
+    default: op

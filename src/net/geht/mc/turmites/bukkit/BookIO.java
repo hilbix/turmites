@@ -70,29 +70,26 @@ public class BookIO
       return bookFile(player, name, EXT);
     }
 
-  private String playerName(Player p)
+  private String bookPlayerName(Player p)
     {
       return p.getName().toLowerCase() + PLAYER;
     }
 
   private File bookDir(String player, String name)
     {
-      return bookFile(player, name, "");
+      return bookFile(player, name, BUNDLE);
     }
 
   private ItemStack load1(File f)
     {
       YamlConfiguration y = new YamlConfiguration();
-      try
-	{
-	  y.load(f);
-	} catch(IOException e)
-	{
-	  throw new ReadErrorException().e(e);
-	} catch(InvalidConfigurationException e)
-	{
-	  throw new DataErrorException().e(e);
-	}
+      try {
+	y.load(f);
+      } catch(IOException e) {
+	throw new ReadErrorException().e(e);
+      } catch(InvalidConfigurationException e) {
+	throw new DataErrorException().e(e);
+      }
 
       String title = y.getString("t");
       String author = y.getString("a");
@@ -144,7 +141,7 @@ public class BookIO
       // Try
       // Dir<player>Player<book>Bundle/*Ext
       // Dir<player>Player<book>Ext
-      is = load(playerName(p), name);
+      is = load(bookPlayerName(p), name);
       if (null == is)
 	{
 	  // Try
@@ -169,13 +166,11 @@ public class BookIO
       y.set("t", book.getTitle());
       y.set("a", book.getAuthor());
       y.set("p", book.getPages());
-      try
-	{
-	  y.save(bookFile(playerName(p), name));
-	} catch(IOException e)
-	{
-	  throw new WriteErrorException().e(e);
-	}
+      try {
+	y.save(bookFile(bookPlayerName(p), name));
+      } catch(IOException e) {
+	throw new WriteErrorException().e(e);
+      }
       return null;
     }
 
