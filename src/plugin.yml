@@ -22,8 +22,8 @@ commands:
       <command> cont [TASK] -- continue task, default: last halted
       <command> step [COUNT] -- singlestep halted tasks
       <command> debug level [TASK] -- debug tasks, level=0(off) to 65535(full)
-      <command> set key [value] -- get key value or set it
-      <command> set key args -- get key values which take parameters
+      <command> get key args -- get key values with optional parameters
+      <command> set key [value] -- set key value (or get current value of it)
       <command> tool -- give the turmite tool (golden hoe)
     aliases: [t,tu,tur,turm,turmites]
 

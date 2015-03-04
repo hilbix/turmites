@@ -5,7 +5,7 @@ import net.geht.mc.turmites.bukkit.CheckArgs;
 import net.geht.mc.turmites.ex.MissingArgumentException;
 import net.geht.mc.turmites.ex.NotFoundException;
 import net.geht.mc.turmites.ex.TooManyArgumentsException;
-import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
@@ -23,24 +23,23 @@ public class get extends GetSet
 
   private static enum Gets implements CheckArgs
     {
-      player_pos(0,1,"[player]: show player pos"),
+      player_pos(-1, "[player..]: show players' pos"),
       ;
 
       private final String help;
-      private final int min, max;
       public String getHelp() { return help; }
       public String getName() { return name().replace('_','.'); }
 
       Gets(int min, int max, String help)
         {
-	  this.min = min;
-	  this.max = max;
+	  this.minargs = min;
+	  this.maxargs = max;
           this.help = help;
         }
       Gets(int max, String help)
 	{
-	  this.min = 0;
-	  this.max = max;
+	  this.minargs = 0;
+	  this.maxargs = max;
 	  this.help = help;
 	}
 
@@ -80,7 +79,7 @@ public class get extends GetSet
 	return args.size()==1 ? getset(main, args) : "unknown key: "+args.get(0);
       }
 
-      args.remove(0);
+      args = args.subList(1, args.size());
       cmd.checkArgs(args);
 
       switch (cmd)
@@ -115,6 +114,15 @@ public class get extends GetSet
       else
 	ply = main.getAllPlayers();
 
+      boolean ok=false;
+      for (Player p : ply)
+	{
+	  ok=true;
+	  Location l = p.getLocation();
+	  main.printf("%6d %3d %6d %s", l.getBlockX(), l.getBlockY(), l.getBlockZ(), p.getName());
+	}
+      if (!ok)
+	main.warn("no players found");
       return null;
     }
   }

@@ -73,6 +73,8 @@ public class CmdMain
   public boolean out(String s)  { return put(ChatColor.WHITE + s); }
   public void    OOPS(String s) { throw new FailedCommandException().e(s); }
 
+  public boolean printf(String s, Object... args) { return put(String.format(s, args)); }
+
   public BookIO getBookIO()  { return cmd.getMain().getBookIO(); }
   public String getCmdName() { return cmd.name; }
 

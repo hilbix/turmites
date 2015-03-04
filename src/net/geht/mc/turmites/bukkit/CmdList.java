@@ -18,6 +18,7 @@ public final class CmdList
       Cont.class,
       step.class,
       Debug.class,
+      get.class,
       set.class,
       tool.class,
     };
