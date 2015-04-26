@@ -8,9 +8,9 @@ import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
 // Generic (unidirectional) queue class
-// send: set(string)
-// recv: set(null)
-public class Q extends LinkedList<Val> implements Setter
+// push: set(string)
+// pull: set(null)
+public class FIFO extends LinkedList<Val> implements Setter
   {
   @Override
   public Val set(Val v)

@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
 // Generic stack class
 // push: set(string)
 // pop:  set(null)
-public class Stack extends LinkedList<Val> implements Setter
+public class LIFO extends LinkedList<Val> implements Setter
   {
   @Override
   public Val set(Val v)
