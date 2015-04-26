@@ -35,6 +35,9 @@ it:	all
 	bukkit reload
 	bukkit
 
+sh:
+	exec bash
+
 # cmd "install" is not guaranteed to be atomic, hence DIY, sigh
 install:	all
 	cp -f '$(DEST)' '$(INSTDIR)/$(DEST).tmp'
