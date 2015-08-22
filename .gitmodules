@@ -4,3 +4,6 @@
 [submodule "src/org/jetbrains"]
 	path = src/org/jetbrains
 	url = https://github.com/hilbix/org.jetbrains.git
+[submodule "jzmq"]
+	path = jzmq
+	url = https://github.com/zeromq/jzmq

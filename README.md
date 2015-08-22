@@ -15,6 +15,13 @@ So this is and says free as in free speech, free beer and free man.
 Build
 -----
 
+This needs `pkg-config`:
+
+```bash
+apt-get install pkg-config
+```
+
+
 ```bash
 cd ~/bukkit/plugins # where your bukkit plugins are located
 git clone https://github.com/hilbix/turmites.git

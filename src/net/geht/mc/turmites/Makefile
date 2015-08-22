@@ -6,4 +6,3 @@ all sh:
 
 cd:
 	exec make sh
-

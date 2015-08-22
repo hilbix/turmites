@@ -7,7 +7,9 @@ ME=turmites
 DEST=$(ME).jar
 SRCDIR=src
 
-SUBMODULES=src/org/intellij src/org/jetbrains
+JZMQ=jzmq
+
+SUBMODULES=src/org/intellij src/org/jetbrains $(JZMQ)
 
 PLUGIN=plugin.yml
 MF=META-INF/MANIFEST.MF
