@@ -1,6 +1,5 @@
 package net.geht.mc.turmites.bukkit;
 
-import gnu.trove.impl.sync.TSynchronizedDoubleList;
 import net.geht.mc.turmites.ex.FailedCommandException;
 import net.geht.mc.turmites.ex.NotFoundException;
 import net.geht.mc.turmites.ex.NotPlayerException;
@@ -9,7 +8,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
