@@ -1,7 +1,7 @@
 # I like `make`.  No `maven`, no complex documentation, nothing, just `make`.
 # Why re-invent the wheel in a different shape when it's already perfect?
 
-INSTDIR=../../jar
+INSTDIR=jar
 
 ME=turmites
 DEST=$(ME).jar
@@ -64,8 +64,9 @@ clean:
 	rm -rf '$(OUT)'
 
 distclean: clean
-	rm -f '$(CB)' '$(DEST)'
-	ln -vfs '../../jar/craftbukkit-1.8.jar' '$(CB)'
+	rm -f '$(CB)' '$(DEST)' jar
+	ln -s ../../jar
+	ln -vfs 'jar/craftbukkit-1.8.jar' '$(CB)'
 
 $(CB):
 	@echo
