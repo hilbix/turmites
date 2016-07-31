@@ -24,8 +24,8 @@ SRC+=$(SRCDIR)/*/*/*/*/*/*/*.java
 
 OUT=tmp
 SPIGOT=spigot
-CB=craftbukkit.jar
-CLASSPATH=src:$(CB)
+CB=spigot
+CLASSPATH=src:$(CB).jar
 
 JAVAC=javac -cp '$(CLASSPATH)'
 JAVACME=mkdir -p '$(OUT)/$(ME)' && $(JAVAC) -d '$(OUT)/$(ME)'
@@ -53,7 +53,7 @@ $(DEST):	compile
 $(SUBMODULES):
 	git submodule update --init
 
-compile:	$(CB) $(SUBMODULES)
+compile:	$(CB).jar $(SUBMODULES)
 	[ ! -d '$(OUT)/$(ME)' ] || rm -rf '$(OUT)/$(ME)'
 	$(JAVACME) $(SRC) || make lint
 
@@ -64,25 +64,25 @@ clean:
 	rm -rf '$(OUT)'
 
 distclean: clean
-	rm -f '$(CB)' '$(DEST)' jar
+	rm -f '$(CB).jar' '$(DEST)' jar
 	ln -s ../../jar
-	ln -vfs 'jar/craftbukkit-1.8.jar' '$(CB)'
+	ln -vfs 'jar/$(CB)'-*.jar '$(CB).jar'
 
-$(CB):
+$(CB).jar:
 	@echo
-	@echo '!!! This needs $(CB)'
+	@echo '!!! This needs $(CB).jar'
 	@echo '!!! You need to reference it from somewhere, for example if you have it in $$HOME/bukkit'
-	@echo '!!!	ln -s $$HOME/bukkit/$(CB) $(CB)'
+	@echo '!!!	ln -s $$HOME/bukkit/$(CB).jar $(CB).jar'
 	@echo '!!! You can also try:'
 	@echo '!!!	make spigot'
 	@echo
 	@false
 
-spigot:	$(OUT)/$(SPIGOT)/$(CB)
-	rm -f '$(CB)'
-	ln -vfs '$(OUT)/$(SPIGOT)'/craftbukkit-*.jar '$(CB)'
+spigot:	$(OUT)/$(SPIGOT)/$(CB).jar
+	rm -f '$(CB).jar'
+	ln -vfs '$(OUT)/$(SPIGOT)/$(CB)'-*.jar '$(CB).jar'
 
-$(OUT)/$(SPIGOT)/$(CB):	update
+$(OUT)/$(SPIGOT)/$(CB).jar:	update
 
 update:
 	@echo
